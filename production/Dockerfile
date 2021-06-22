@@ -17,14 +17,8 @@ RUN yum repolist \
     && rm -rf /var/cache/yum
 
 
-# 配置文件
-COPY nginx.conf /etc/nginx/
-COPY mongod.conf /etc
-COPY fcmweb.service fcm.service mongod.service /lib/systemd/system/
-COPY requirements.txt /root
-
-
 # 安装 python package & 清理
+COPY requirements.txt /root
 RUN pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/ \
     && pip3 install -r /root/requirements.txt \
     && rm -rf /root/.cache/pip
@@ -37,6 +31,12 @@ RUN yum install -y wget \
     && mv /wkhtmltox/bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf \
     && chmod +x /usr/local/bin/wkhtmltopdf \
     && rm -rf /wkhtmltox*
+
+
+# 配置文件
+COPY nginx.conf /etc/nginx/
+COPY mongod.conf /etc
+COPY fcmweb.service fcm.service mongod.service /lib/systemd/system/
 
 
 # 启用服务
