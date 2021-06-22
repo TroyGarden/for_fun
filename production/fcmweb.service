@@ -1,0 +1,14 @@
+[Unit]
+Description=Gunicorn instance to run fcmweb-service
+After=network.target
+
+[Service]
+User=root
+PrivateTmp=true
+Environment="FCM_LICENSE=replace_with_license"
+WorkingDirectory=/data/workspace/fcmweb_service/deploy
+ExecStartPre=/usr/bin/mkdir -p /data/workspace/fcmweb_cases
+ExecStart=/usr/local/bin/gunicorn runApp:app -w 12 -t 120 -b 0.0.0.0:8891
+
+[Install]
+WantedBy=multi-user.target
