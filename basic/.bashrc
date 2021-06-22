@@ -8,6 +8,7 @@ alias vdir='ls --color=auto --format=long'
 alias ll='ls -l'                              # long list
 alias la='ls -A'                              # all but . and ..
 alias l='ls -CF'                              #
+alias cls='tput reset'
 alias cl='cls; ls -CF'
 alias clt='cls; ls -CFt -l'
 alias lspath='echo $PATH | sed "s/\:/\n/g"'
@@ -46,5 +47,7 @@ fi
 
 if [ -f /data/workspace/FCM_LICENSE ]; then
     export FCM_LICENSE=`cat /data/workspace/FCM_LICENSE`
+    export PYTHONPATH=/data/workspace
 fi
+
 
