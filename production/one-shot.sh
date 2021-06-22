@@ -33,7 +33,7 @@ fi
 
 
 if [ -e /data/workspace/one-shot.sh ]; then
-    /data/workspace/one-shot.sh
+    bash /data/workspace/one-shot.sh
 fi
 
 

@@ -1,4 +1,4 @@
-# fcm docker image for all kinds of environments.
+# fcm docker images for all kinds of environments
 ## basic
 能够通过fcm运行后端病例
 >   docker run -it --name **fcm-basic**
@@ -68,6 +68,7 @@
     1. /data/workspace/one-shot.sh
     2. 初始化 mongodb
     3. 初始化 jupyter
+    4. 将 root 的 home 从 /root 换到 /home
 
 
 

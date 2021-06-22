@@ -22,16 +22,16 @@ RUN yum -y update \
     && rm -rf /var/cache/yum
 
 
-# 配置文件
-COPY .bashrc /root/.bashrc
-COPY requirements.txt /root
-
-
 # 安装 python package & 清理
+COPY requirements.txt /root
 RUN pip3 install --upgrade pip \
     && pip config set global.index-url https://mirrors.aliyun.com/pypi/simple \
     && pip3 install -r /root/requirements.txt \
     && rm -rf /root/.cache/pip
+
+
+# 配置文件
+COPY .bashrc /root/.bashrc
 
 
 # 启动服务

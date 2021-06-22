@@ -9,7 +9,7 @@ Environment="FCM_LICENSE=replace_with_license"
 Environment="PYTHONPATH=/data/workspace"
 Environment="LC_ALL=en_US.UTF-8"
 WorkingDirectory=/data/workspace
-ExecStart=/usr/local/bin/jupyter notebook --allow-root
+ExecStart=/usr/local/bin/jupyter notebook --allow-root --config=/home/.jupyter/jupyter_notebook_config.py
 
 [Install]
 WantedBy=multi-user.target
