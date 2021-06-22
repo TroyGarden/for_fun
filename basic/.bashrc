@@ -8,6 +8,7 @@ alias vdir='ls --color=auto --format=long'
 alias ll='ls -l'                              # long list
 alias la='ls -A'                              # all but . and ..
 alias l='ls -CF'                              #
+alias cls='tput reset'
 alias cl='cls; ls -CF'
 alias clt='cls; ls -CFt -l'
 alias lspath='echo $PATH | sed "s/\:/\n/g"'
