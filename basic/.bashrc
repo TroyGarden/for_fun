@@ -40,5 +40,11 @@ alias gitr='git reset HEAD~1 --hard; git pull'
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-        . /etc/bashrc
+    . /etc/bashrc
 fi
+
+
+if [ -f /data/workspace/FCM_LICENSE ]; then
+    export FCM_LICENSE=`cat /data/workspace/FCM_LICENSE`
+fi
+
