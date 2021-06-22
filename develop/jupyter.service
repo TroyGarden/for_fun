@@ -1,0 +1,15 @@
+[Unit]
+Description=Jupyter Server
+After=network.target
+
+[Service]
+User=root
+PrivateTmp=true
+Environment="FCM_LICENSE=replace_with_license"
+Environment="PYTHONPATH=/data/workspace"
+Environment="LC_ALL=en_US.UTF-8"
+WorkingDirectory=/data/workspace
+ExecStart=/usr/local/bin/jupyter notebook --allow-root
+
+[Install]
+WantedBy=multi-user.target

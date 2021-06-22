@@ -48,7 +48,7 @@
     2. rc-local
 
 3. 一过性脚本
-    1. one-shot.sh
+    1. /data/workspace/one-shot.sh
     2. 初始化 mongodb
     3. 设置 FCM_LICENSE 到 fcm/fcmweb
     4. 自启动 fcm/fcmweb
@@ -63,6 +63,11 @@
 
 2. 服务配置
     1. jupyter
+
+3. 一过性脚本
+    1. /data/workspace/one-shot.sh
+    2. 初始化 mongodb
+    3. 初始化 jupyter
 
 
 
