@@ -51,3 +51,6 @@ if [ -f /data/workspace/FCM_LICENSE ]; then
 fi
 
 
+export LC_ALL=en_US.UTF-8
+
+

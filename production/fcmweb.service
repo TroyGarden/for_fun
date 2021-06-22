@@ -5,6 +5,7 @@ After=network.target
 [Service]
 User=root
 PrivateTmp=true
+Environment="LC_ALL=en_US.UTF-8"
 Environment="FCM_LICENSE=replace_with_license"
 WorkingDirectory=/data/workspace/fcmweb_service/deploy
 ExecStartPre=/usr/bin/mkdir -p /data/workspace/fcmweb_cases
