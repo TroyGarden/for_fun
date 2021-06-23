@@ -4,12 +4,12 @@ Documentation=https://docs.mongodb.org/manual
 After=network.target
 
 [Service]
-User=mongod
-Group=mongod
+User=root
+Group=root
 Environment="OPTIONS=-f /etc/mongod.conf"
 ExecStart=/usr/bin/mongod $OPTIONS
 ExecStartPre=/usr/bin/mkdir -p /data/workspace/mongodb/mongo
-ExecStartPre=/usr/bin/chown -R mongod:mongod /data/workspace/mongodb
+ExecStartPre=/usr/bin/chown -R root:root /data/workspace/mongodb
 ExecStartPre=/usr/bin/chmod -R 0755 /data/workspace/mongodb
 PermissionsStartOnly=true
 PIDFile=/data/workspace/mongodb/mongod.pid

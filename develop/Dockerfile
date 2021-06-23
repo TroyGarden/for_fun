@@ -7,6 +7,7 @@ FROM troygarden/fcm:production
 
 # 安装组件 & 清理
 RUN yum install -y git \
+    && yum install -y unar \
     && yum clean all \
     && rm -rf /var/cache/yum
 
