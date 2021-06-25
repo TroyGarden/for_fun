@@ -8,20 +8,21 @@ FROM troygarden/fcm:production
 # 安装组件 & 清理
 RUN yum install -y git \
     && yum install -y unar \
+    && yum install -y net-tools \
+    && yum install -y unzip \
     && yum clean all \
     && rm -rf /var/cache/yum
 
 
-# 配置文件
-COPY requirements.txt /root
-COPY jupyter.service /lib/systemd/system/
-
-
 # 安装 python package & 清理
-
+COPY requirements.txt /root
 RUN pip config set global.index-url https://mirrors.aliyun.com/pypi/simple \
     && pip3 install -r /root/requirements.txt \
     && rm -rf /root/.cache/pip
+
+
+# 配置文件
+COPY jupyter.service /lib/systemd/system/
 
 
 # 启用服务

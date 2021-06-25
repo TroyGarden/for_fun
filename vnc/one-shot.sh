@@ -42,10 +42,6 @@ if [ ! -e /root/.jupyter/jupyter_notebook_config.json ]; then
 fi
 
 
-# 启动图形化界面
-systemctl set-default graphical.target
-
-
 # 启动vnc端口1服务
 systemctl enable vncserver@:1
 systemctl start vncserver@:1
