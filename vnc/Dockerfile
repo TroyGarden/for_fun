@@ -5,8 +5,7 @@ FROM troygarden/fcm:develop
 # 安装组件
 RUN yum groupinstall -y "X Window System" \
     && yum groupinstall -y "Xfce" \
-    && yum install -y vnc-server \
-    && (echo "deepcyto"; echo "deepcyto"; echo n) | vncpasswd \
+    && yum groupinstall -y Fonts \
     && yum install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm \
     && yum clean all \
     && rm -rf /var/cache/yum
@@ -33,6 +32,6 @@ RUN chmod a+x /usr/bin/google-chrome-root
 
 
 # 一过性程序
-# COPY one-shot.sh /root
+COPY one-shot.sh /root
 
 

@@ -8,6 +8,7 @@ FROM troygarden/fcm:production
 # 安装组件 & 清理
 RUN yum install -y git \
     && yum install -y unar \
+    && yum install -y gcc \
     && yum install -y net-tools \
     && yum install -y unzip \
     && yum clean all \

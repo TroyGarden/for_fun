@@ -43,8 +43,10 @@ fi
 
 
 # 启动vnc端口1服务
-vncserver
-sed -i '/xinitrc/c\exec startxfce4' /root/.vnc/xstartup
+# yum install -y vnc-server
+# (echo "deepcyto"; echo "deepcyto"; echo n) | vncpasswd
+# vncserver
+# sed -i '/xinitrc/c\exec startxfce4' /root/.vnc/xstartup
 # cat /lib/systemd/system/vncserver@.service | sed s/\<USER\>/root/ > /etc/systemd/system/vncserver@:1.service
 # systemctl enable vncserver@:1
 # systemctl start vncserver@:1
