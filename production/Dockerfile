@@ -48,5 +48,5 @@ RUN systemctl enable redis \
 
 # 一过性程序
 COPY one-shot.sh /root
-RUN echo 'bash /root/one-shot.sh' >> /etc/rc.local
+RUN echo 'if [ -e /root/one-shot.sh ]; then bash /root/one-shot.sh; fi' >> /etc/rc.local
 

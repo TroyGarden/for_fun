@@ -30,5 +30,5 @@ COPY jupyter.service /lib/systemd/system/
 
 # 一过性程序
 COPY one-shot.sh /root
-RUN echo 'bash /root/one-shot.sh' >> /etc/rc.local
+
 

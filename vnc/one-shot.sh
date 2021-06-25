@@ -43,8 +43,11 @@ fi
 
 
 # 启动vnc端口1服务
-systemctl enable vncserver@:1
-systemctl start vncserver@:1
+vncserver
+sed -i '/xinitrc/c\exec startxfce4' /root/.vnc/xstartup
+# cat /lib/systemd/system/vncserver@.service | sed s/\<USER\>/root/ > /etc/systemd/system/vncserver@:1.service
+# systemctl enable vncserver@:1
+# systemctl start vncserver@:1
 
 
 # 运行 /data/workspace 下的 one-shot.sh
@@ -58,3 +61,4 @@ grep -v /root/one-shot.sh /etc/rc.local > rc.local
 chmod a+x rc.local
 mv rc.local /etc/rc.d/rc.local
 rm /root/one-shot.sh
+
