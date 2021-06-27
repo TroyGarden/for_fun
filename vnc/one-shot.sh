@@ -22,9 +22,9 @@ fi
 # 初始化 FCM_LICENSE
 if [ -e /data/workspace/FCM_LICENSE ]; then
     FCM_LICENSE=`cat /data/workspace/FCM_LICENSE`
-    cat /lib/systemd/system/fcm.service | sed s/replace_with_license/$FCM_LICENSE/ > fcm.bk ; mv fcm.bk /lib/systemd/system/fcm.service
-    cat /lib/systemd/system/fcmweb.service | sed s/replace_with_license/$FCM_LICENSE/ > fcm.bk ; mv fcm.bk /lib/systemd/system/fcmweb.service
-    cat /lib/systemd/system/jupyter.service | sed s/replace_with_license/$FCM_LICENSE/ > fcm.bk ; mv fcm.bk /lib/systemd/system/jupyter.service
+    sed -i s/replace_with_license/$FCM_LICENSE/ /lib/systemd/system/fcm.service
+    sed -i s/replace_with_license/$FCM_LICENSE/ /lib/systemd/system/fcmweb.service
+    sed -i s/replace_with_license/$FCM_LICENSE/ /lib/systemd/system/jupyter.service
 fi
 
 
@@ -43,10 +43,11 @@ fi
 
 
 # 启动vnc端口1服务
-# yum install -y vnc-server
-# (echo "deepcyto"; echo "deepcyto"; echo n) | vncpasswd
-# vncserver
-# sed -i '/xinitrc/c\exec startxfce4' /root/.vnc/xstartup
+yum groupinstall -y "Xfce"
+yum install -y vnc-server
+(echo "deepcyto"; echo "deepcyto"; echo n) | vncpasswd
+vncserver
+sed -i '/xinitrc/c\exec startxfce4' /root/.vnc/xstartup
 # cat /lib/systemd/system/vncserver@.service | sed s/\<USER\>/root/ > /etc/systemd/system/vncserver@:1.service
 # systemctl enable vncserver@:1
 # systemctl start vncserver@:1

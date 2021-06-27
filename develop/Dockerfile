@@ -31,5 +31,6 @@ COPY jupyter.service /lib/systemd/system/
 
 # 一过性程序
 COPY one-shot.sh /root
-
-
+RUN mv /root /root.bk \
+    && echo 'if [ ! -d /root ]; then mv /root.bk /root; bash /root/one-shot.sh; fi' >> /etc/rc.local \
+    && echo 'if [ ! -e /root/one-shot.sh ]; then mv /root.bk/* /root.bk/.* /root; rmdir /root.bk; bash /root/one-shot.sh; fi' >> /etc/rc.local

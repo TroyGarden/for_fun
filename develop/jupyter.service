@@ -7,7 +7,6 @@ User=root
 PrivateTmp=true
 Environment="FCM_LICENSE=replace_with_license"
 Environment="PYTHONPATH=/data/workspace"
-Environment="HOME=/home"
 Environment="LC_ALL=en_US.UTF-8"
 WorkingDirectory=/data/workspace
 ExecStart=/usr/local/bin/jupyter notebook --allow-root

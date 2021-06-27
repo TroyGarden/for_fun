@@ -22,9 +22,9 @@ fi
 # 初始化 FCM_LICENSE
 if [ -e /data/workspace/FCM_LICENSE ]; then
     FCM_LICENSE=`cat /data/workspace/FCM_LICENSE`
-    cat /lib/systemd/system/fcm.service | sed s/replace_with_license/$FCM_LICENSE/ > fcm.bk ; mv fcm.bk /lib/systemd/system/fcm.service
-    cat /lib/systemd/system/fcmweb.service | sed s/replace_with_license/$FCM_LICENSE/ > fcm.bk ; mv fcm.bk /lib/systemd/system/fcmweb.service
-    cat /lib/systemd/system/jupyter.service | sed s/replace_with_license/$FCM_LICENSE/ > fcm.bk ; mv fcm.bk /lib/systemd/system/jupyter.service
+    sed -i s/replace_with_license/$FCM_LICENSE/ /lib/systemd/system/fcm.service
+    sed -i s/replace_with_license/$FCM_LICENSE/ /lib/systemd/system/fcmweb.service
+    sed -i s/replace_with_license/$FCM_LICENSE/ /lib/systemd/system/jupyter.service
 fi
 
 
@@ -33,6 +33,7 @@ if [ ! -e /root/.jupyter/jupyter_notebook_config.py ]; then
     jupyter notebook --generate-config
     cat /root/.jupyter/jupyter_notebook_config.py | sed s/#c.NotebookApp.ip\ =\ \'localhost\'/c.NotebookApp.ip=\'0.0.0.0\'/ > jp
     mv jp /root/.jupyter/jupyter_notebook_config.py
+    jupyter contrib nbextension install --sys-prefix
 fi
 
 
@@ -40,20 +41,6 @@ fi
 if [ ! -e /root/.jupyter/jupyter_notebook_config.json ]; then
     echo '{"NotebookApp": {"password": "argon2:$argon2id$v=19$m=10240,t=10,p=8$OS9CmL1yKN2Muo52wKxPxg$ASw/zU5dZzpLZauJWQYxxQ"}}' > /root/.jupyter/jupyter_notebook_config.json
 fi
-
-
-# 更改root home
-if [ `ls -a /home | wc -l` -eq 2 ]; then
-    mv /root/* /home
-    mv /root/.* /home
-else
-    rm -rf /root/.*
-    rm -rf /root/*
-fi
-
-grep ^root /etc/passwd | sed s'/\/root/\/home/' > passwd
-grep -v ^root /etc/passwd >> passwd
-mv passwd /etc/passwd
 
 
 # 运行 /data/workspace 下的 one-shot.sh

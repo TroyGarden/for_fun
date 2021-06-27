@@ -22,8 +22,8 @@ fi
 # 初始化 FCM_LICENSE
 if [ -e /data/workspace/FCM_LICENSE ]; then
     FCM_LICENSE=`cat /data/workspace/FCM_LICENSE`
-    cat /lib/systemd/system/fcm.service | sed s/replace_with_license/$FCM_LICENSE/ > fcm.bk ; mv fcm.bk /lib/systemd/system/fcm.service
-    cat /lib/systemd/system/fcmweb.service | sed s/replace_with_license/$FCM_LICENSE/ > fcm.bk ; mv fcm.bk /lib/systemd/system/fcmweb.service
+    sed -i s/replace_with_license/$FCM_LICENSE/ /lib/systemd/system/fcm.service
+    sed -i s/replace_with_license/$FCM_LICENSE/ /lib/systemd/system/fcmweb.service
 
     systemctl enable fcm
     systemctl enable fcmweb
