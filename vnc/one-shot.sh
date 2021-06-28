@@ -31,8 +31,10 @@ fi
 # 初始化 jupyter
 if [ ! -e /root/.jupyter/jupyter_notebook_config.py ]; then
     jupyter notebook --generate-config
-    cat /root/.jupyter/jupyter_notebook_config.py | sed s/#c.NotebookApp.ip\ =\ \'localhost\'/c.NotebookApp.ip=\'0.0.0.0\'/ > jp
-    mv jp /root/.jupyter/jupyter_notebook_config.py
+    sed -i '/c.NotebookApp.ip/c\c.NotebookApp.ip="0.0.0.0"' /root/.jupyter/jupyter_notebook_config.py
+    jupyter contrib nbextension install --sys-prefix
+    systemctl enable jupyter
+    systemctl start jupyter
 fi
 
 
@@ -43,14 +45,17 @@ fi
 
 
 # 启动vnc端口1服务
+yum groupinstall -y "X Window System"
 yum groupinstall -y "Xfce"
 yum install -y vnc-server
 (echo "deepcyto"; echo "deepcyto"; echo n) | vncpasswd
-vncserver
+export HOME=/root
+vncserver > /dev/null 2>&1
+echo "geometry=1920x986" >> /root/.vnc/config
 sed -i '/xinitrc/c\exec startxfce4' /root/.vnc/xstartup
-# cat /lib/systemd/system/vncserver@.service | sed s/\<USER\>/root/ > /etc/systemd/system/vncserver@:1.service
-# systemctl enable vncserver@:1
-# systemctl start vncserver@:1
+cat /lib/systemd/system/vncserver@.service | sed s/\<USER\>/root/ > /etc/systemd/system/vncserver@:1.service
+systemctl enable vncserver@:1
+systemctl start vncserver@:1
 
 
 # 运行 /data/workspace 下的 one-shot.sh
@@ -60,8 +65,7 @@ fi
 
 
 # 清理
-grep -v /root/one-shot.sh /etc/rc.local > rc.local
-chmod a+x rc.local
-mv rc.local /etc/rc.d/rc.local
-rm /root/one-shot.sh
+sed -i /one-shot.sh/d /etc/rd.d/rc.local
+chmod a+x /etc/rd.d/rc.local
+rm /root/one-shot.sh /root/requirements.txt
 

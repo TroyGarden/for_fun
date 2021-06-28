@@ -38,8 +38,7 @@ fi
 
 
 # 清理
-grep -v /root/one-shot.sh /etc/rc.local > rc.local
-chmod a+x rc.local
-mv rc.local /etc/rc.d/rc.local
-rm /root/one-shot.sh
+sed -i /one-shot.sh/d /etc/rd.d/rc.local
+chmod a+x /etc/rd.d/rc.local
+rm /root/one-shot.sh /root/requirements.txt
 

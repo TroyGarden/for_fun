@@ -81,7 +81,7 @@
     1. /data/workspace/one-shot.sh
     2. 初始化 mongodb
     3. 初始化 jupyter
-    4. 将 root 的 home 从 /root 换到 /home
+    4. 将 /root 备份到 /root.bk, 转移文件, 方便/root的mount
 
 
 ## vnc

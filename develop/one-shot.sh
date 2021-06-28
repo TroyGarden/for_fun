@@ -31,9 +31,10 @@ fi
 # 初始化 jupyter
 if [ ! -e /root/.jupyter/jupyter_notebook_config.py ]; then
     jupyter notebook --generate-config
-    cat /root/.jupyter/jupyter_notebook_config.py | sed s/#c.NotebookApp.ip\ =\ \'localhost\'/c.NotebookApp.ip=\'0.0.0.0\'/ > jp
-    mv jp /root/.jupyter/jupyter_notebook_config.py
+    sed -i '/c.NotebookApp.ip/c\c.NotebookApp.ip="0.0.0.0"' /root/.jupyter/jupyter_notebook_config.py
     jupyter contrib nbextension install --sys-prefix
+    systemctl enable jupyter
+    systemctl start jupyter
 fi
 
 
@@ -50,8 +51,7 @@ fi
 
 
 # 清理
-grep -v /root/one-shot.sh /etc/rc.local > rc.local
-chmod a+x rc.local
-mv rc.local /etc/rc.d/rc.local
-rm /root/one-shot.sh
+sed -i /one-shot.sh/d /etc/rc.d/rc.local
+chmod a+x /etc/rd.d/rc.local
+rm /root/one-shot.sh /root/requirements.txt
 
