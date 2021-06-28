@@ -21,10 +21,7 @@ fi
 
 # 初始化 FCM_LICENSE
 if [ -e /data/workspace/FCM_LICENSE ]; then
-    FCM_LICENSE=`cat /data/workspace/FCM_LICENSE`
-    sed -i s/replace_with_license/$FCM_LICENSE/ /lib/systemd/system/fcm.service
-    sed -i s/replace_with_license/$FCM_LICENSE/ /lib/systemd/system/fcmweb.service
-    sed -i s/replace_with_license/$FCM_LICENSE/ /lib/systemd/system/jupyter.service
+    sed -i s/replace_with_license/`cat /data/workspace/FCM_LICENSE`/ /lib/systemd/system/fcm*.service /lib/systemd/system/jupyter.service
 fi
 
 
