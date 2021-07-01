@@ -10,7 +10,6 @@ RUN yum install -y git \
     && yum install -y unar \
     && yum install -y gcc \
     && yum install -y net-tools \
-    && yum install -y unzip \
     && yum clean all \
     && rm -rf /var/cache/yum
 

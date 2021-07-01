@@ -12,7 +12,6 @@ RUN yum repolist \
     && yum install -y redis \
     && yum install -y cronie \
     && yum install -y mongodb-org \
-    && yum install -y urw-fonts libXext openssl-devel \
     && yum clean all \
     && rm -rf /var/cache/yum
 
@@ -24,19 +23,10 @@ RUN pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/ \
     && rm -rf /root/.cache/pip
 
 
-# 安装 wkhtmltox
-RUN yum install -y wget \
-    && wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz \
-    && tar -xvf wkhtmltox-*_linux-generic-amd64.tar.xz \
-    && mv /wkhtmltox/bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf \
-    && chmod +x /usr/local/bin/wkhtmltopdf \
-    && rm -rf /wkhtmltox*
-
-
 # 配置文件
 COPY nginx.conf /etc/nginx/
 COPY mongod.conf /etc
-COPY fcmweb.service fcm.service mongod.service /lib/systemd/system/
+COPY fcmweb.service fcm.service mongod.service autossh.service /lib/systemd/system/
 
 
 # 启用服务

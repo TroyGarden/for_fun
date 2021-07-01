@@ -1,6 +1,6 @@
 # fcm docker images for all kinds of environments
 ## basic
-能够通过fcm运行后端病例
+能够通过 fcm 运行后端病例, 生成PDF
 
 >   name=fcm-basic; id=120
 >   docker run -it --name $name
@@ -20,6 +20,8 @@
 2. 基础的组件
     1. python 3.6
     2. pip package
+    3. wkhtmltopdf, wget
+    4. 中文字体
 
 3. 服务配置
     1. rc-local
@@ -27,7 +29,7 @@
 
 
 ## production
-能够运行deepflow平台
+能够运行 deepflow 平台
 
 >   name=fcm-production; id=120
 >   docker run -it --name $name
@@ -41,7 +43,6 @@
 
 1. 包含所需的组件
     1. nginx, redis, crontab, mongodb 等
-    2. wkhtmltopdf, wget
     3. pip package
 
 2. 服务配置
@@ -56,7 +57,7 @@
 
 
 ## develop
-能够通过jupyter运行fcm
+能够通过 jupyter 运行 fcm
 
 >   name=fcm-develop; id=130
 >   docker run -it --name $name
@@ -81,7 +82,7 @@
     1. /data/workspace/one-shot.sh
     2. 初始化 mongodb
     3. 初始化 jupyter
-    4. 将 /root 备份到 /root.bk, 转移文件, 方便/root的mount
+    4. 将 /root 备份到 /root.bk, 转移文件, 方便 /root 的 mount
 
 
 ## vnc

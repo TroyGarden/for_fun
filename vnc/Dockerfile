@@ -4,7 +4,6 @@ FROM troygarden/fcm:develop
 
 # 安装组件
 RUN mv /root.bk /root \
-    && yum groupinstall -y Fonts \
     && yum install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm \
     && yum clean all \
     && rm -rf /var/cache/yum

@@ -1,0 +1,10 @@
+[Unit]
+Description=AutoSSH tunnel service to connect to fcm.deepcyto.cn
+After=network.target
+
+[Service]
+Environment="AUTOSSH_GATETIME=0"
+ExecStart=/usr/bin/autossh -M 0 -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -o "ExitOnForwardFailure=yes" -NR 40022:localhost:22 fcm.deepcyto.cn -p 11122
+
+[Install]
+WantedBy=multi-user.target

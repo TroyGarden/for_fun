@@ -5,12 +5,12 @@
 alias ls='ls -hF --color=tty'                 # classify files in colour
 alias dir='ls --color=auto --format=vertical'
 alias vdir='ls --color=auto --format=long'
-alias ll='ls -l'                              # long list
-alias la='ls -A'                              # all but . and ..
-alias l='ls -CF'                              #
+alias ll='ls -lh'                              # long list
+alias la='ls -Ah'                              # all but . and ..
+alias l='ls -CFh'                              #
 alias cls='tput reset'
-alias cl='cls; ls -CF'
-alias clt='cls; ls -CFt -l'
+alias cl='cls; ls -CFh'
+alias clt='cls; ls -CFt -lh'
 alias lspath='echo $PATH | sed "s/\:/\n/g"'
 
 alias du='du -h'
