@@ -15,6 +15,7 @@ tensorboard==1.13.1
 tensorboard-plugin-wit==1.7.0
 tensorflow==1.13.1
 tensorflow-estimator==1.13.0
+pillow==7.1.2
 pyinstaller==4.0
 pyinstaller-hooks-contrib==2020.10
 Cython==0.29.21
